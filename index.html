@@ -9,16 +9,17 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
     <style>
         body { margin:2; padding:0; }
-        #map { position:absolute; top:70px; left:100px; bottom:80px; width:85%; }
+        #map1 { position:absolute; top:70px; left:100px; bottom:80px; width:85%; }
+        #map2 { position:absolute; top:500px; left:100px; bottom: 10px; width:40%; }
     </style>
 </head>
 <body>
 
-<div id='map'></div>
+<div id='map1'></div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFkZWxlaW5lam9oYW5zb24iLCJhIjoiY2lzczduYzJ4MDZrODJucGh0Mm1xbmVxNCJ9.i7q4iT8FFgh_y5v4we5UhQ';
-var map = new mapboxgl.Map({
-    container: 'map', // container id
+var map1 = new mapboxgl.Map({
+    container: 'map1', // container id
     style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
     center: [151.004105, -33.813002], // starting position [lng, lat]
     pitch: 45,
@@ -66,6 +67,59 @@ map.on('load', function() {
     });
 });
 </script>
+<div id='map1'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWFkZWxlaW5lam9oYW5zb24iLCJhIjoiY2lzczduYzJ4MDZrODJucGh0Mm1xbmVxNCJ9.i7q4iT8FFgh_y5v4we5UhQ';
+var map1 = new mapboxgl.Map({
+    container: 'map1', // container id
+    style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
+    center: [151.004105, -33.813002], // starting position [lng, lat]
+    pitch: 45,
+    bearing: -17.6,
+    zoom: 9 // starting zoom
+});
+map.on('load', function() {
+    map.addLayer({
+        "id": "data",
+        "type": "fill-extrusion",
+        "source": {
+        	'type': 'geojson',
+        	'data': data
+        },
+           'paint': {
+                'fill-extrusion-color' : {
+                    'property': 'p_tot',
+                    "stops":[
+                    	[0, 'lightcyan'],
+                    	[112, 'turquoise'],
+                        [250,'lightseagreen'],
+                        [338,'teal'],
+                        [436,'steelblue'],
+                        [635,'royalblue'],
+                        [1160,'mediumblue'],
+                        [2428,'darkblue'],
+                        [10000,'midnightblue']
+                    ]
+                    
+                },
+                'fill-extrusion-height' : {
+                    'property': 'dngts_tot',
+                    "stops":[
+                    	[0.2, 0],
+                    	[10, 5000],
+                        [30, 15000],
+                        [51, 25500],
+                        [100,50000],
+                        
+                        
+                    ]
+                },
+                 'fill-extrusion-opacity': 0.9
+            }
+    });
+});
+</script>
+
 
 </body>
 </html>
