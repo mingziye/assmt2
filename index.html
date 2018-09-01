@@ -67,53 +67,6 @@ map.on('load', function() {
     });
 });
 </script>
-<div id='map2'></div>
-<script>
-mapboxgl.accessToken = 'pk.eyJ1IjoibWFkZWxlaW5lam9oYW5zb24iLCJhIjoiY2lzczduYzJ4MDZrODJucGh0Mm1xbmVxNCJ9.i7q4iT8FFgh_y5v4we5UhQ';
-var map1 = new mapboxgl.Map({
-    container: 'map2', // container id
-    style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
-    center: [151.004105, -33.813002], // starting position [lng, lat]
-    pitch: 45,
-    bearing: -17.6,
-    zoom: 9 // starting zoom
-});
-map.on('load', function() {
-    map.addLayer({
-        "id": "data1",
-        "type": "fill-extrusion",
-        "source": {
-        	'type': 'geojson',
-        	'data': data
-        },
-           'paint': {
-                'fill-extrusion-color' : {     
-                    'property': 'm_tot',
-                    "stops":[
-                    	[0, 'lightcyan'],
-                    	[108, 'turquoise'],
-                        [472,'teal'],
-                        [1900,'steelblue'],
-                        [6000,'royalblue']
-                    ]
-                    
-                },
-                'fill-extrusion-height' : {
-                    'property': 'm_12',
-                    "stops":[
-                    	[0, 0],
-                    	[61, 5000],
-                        [121, 10000],
-                        [240, 20000],
-                        [787, 80000],
-                        [2100,200000]   
-                    ]
-                },
-                 'fill-extrusion-opacity': 0.9
-            }
-    });
-});
-</script>
 
 
 </body>
